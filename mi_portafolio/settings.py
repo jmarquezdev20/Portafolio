@@ -1,17 +1,20 @@
 from pathlib import Path
-import os
+import os  # necesario si usas rutas con os.path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+import os
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-ps8sbl(--8ix)3*kh6$waa+#s-)f7*7v@++kgy9v8xyvy#4=ot')
+SECRET_KEY = os.enviroment.get('SECRET_KEY', default='sbhbsshbhsbh')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['*']  # Para desarrollo y Render
-
+ALLOWED_HOSTS = []  # Para Ngrok temporalmente podrías poner ['*'] si quieres permitir acceso externo
+RENDER_ESTERNA_HOSTNAME= os.environ.get('RENDER_ESTERNA_HOSTNAME')
+if RENDER_ESTERNA_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_ESTERNA_HOSTNAME)
+    
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,7 +28,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← AGREGADO para servir archivos estáticos
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -39,14 +42,13 @@ ROOT_URLCONF = 'mi_portafolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # Aquí puedes agregar carpetas de templates si las tienes fuera de apps
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'portafolio.context_processors.year_context',  # Tu context processor
             ],
         },
     },
@@ -78,6 +80,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  # Carpeta donde están tus CSS, JS, imágenes y PDFs
@@ -85,9 +91,6 @@ STATICFILES_DIRS = [
 
 # Carpeta donde se guardarán los archivos cuando hagas collectstatic (producción)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Configuración para WhiteNoise (servir archivos estáticos en producción)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Archivos subidos por usuarios (opcional)
 MEDIA_URL = '/media/'
