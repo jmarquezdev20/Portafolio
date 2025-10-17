@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacto - Juan M. Márquez{% endblock %}
+
+{% block content %}
+<style>
+    .contact-container {
+        max-width: 800px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .contact-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .contact-header h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+    }
+
+    .contact-header p {
+        font-size: 1.2rem;
+        color: #a1a1aa;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .contact-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(102, 126, 234, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .contact-card h3 {
+        color: #e4e4e7;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-card p {
+        color: #a1a1aa;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .form-title {
+        font-size: 1.8rem;
+        color: #e4e4e7;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        color: #d4d4d8;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: #e4e4e7;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: #71717a;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-group textarea {
+        min-height: 160px;
+        resize: vertical;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    .success-message {
+        background: rgba(34, 197, 94, 0.1);
+        border: 2px solid rgba(34, 197, 94, 0.3);
+        border-radius: 16px;
+        padding: 25px;
+        margin-top: 30px;
+        text-align: center;
+        animation: slideInUp 0.5s ease;
+    }
+
+    .success-message-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .success-message h3 {
+        color: #22c55e;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .success-message p {
+        color: #a1a1aa;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .form-container {
+            padding: 30px 25px;
+        }
+
+        .contact-methods {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="contact-container">
+    <div class="contact-header">
+        <h1>Hablemos</h1>
+        <p>¿Tienes un proyecto en mente o quieres colaborar? Estoy siempre abierto a nuevas oportunidades y conversaciones interesantes.</p>
+    </div>
+
+    <div class="contact-methods">
+        <a href="mailto:juanmanuelmarquezjimenez9@gmail.com" class="contact-card" style="text-decoration: none;">
+            <div class="contact-card-icon">✉️</div>
+            <h3>Email</h3>
+            <p>Respondo en 24h</p>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/juan-manuel-marquez-jimenez-36765a2b3/" target="_blank" class="contact-card" style="text-decoration: none;">
+            <div class="contact-card-icon">🌐</div>
+            <h3>LinkedIn</h3>
+            <p>Conectemos</p>
+        </a>
+        
+        <a href="https://github.com/jmarquezdev20" target="_blank" class="contact-card" style="text-decoration: none;">
+            <div class="contact-card-icon">💻</div>
+            <h3>GitHub</h3>
+            <p>Ve mi código</p>
+        </a>
+    </div>
+
+    <div class="form-container">
+        <h2 class="form-title">Envíame un mensaje</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input 
+                    type="text" 
+                    id="nombre" 
+                    name="nombre" 
+                    placeholder="Ej: María García" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="tu@email.com" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje</label>
+                <textarea 
+                    id="mensaje" 
+                    name="mensaje" 
+                    placeholder="Cuéntame sobre tu proyecto o idea..." 
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Enviar mensaje →
+            </button>
+        </form>
+    </div>
+
+    {% if enviado %}
+    <div class="success-message">
+        <div class="success-message-icon">✨</div>
+        <h3>¡Mensaje enviado con éxito!</h3>
+        <p>Gracias por contactarme, <strong>{{ nombre }}</strong>. Te responderé lo antes posible.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

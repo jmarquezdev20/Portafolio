@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}  {# Muy importante para usar archivos estáticos #}
+
+{% block title %}Inicio - Juan M. Márquez{% endblock %}
+
+{% block content %}
+<section class="hero-section" style="text-align: center; padding: 50px 20px;">
+    <!-- Foto de perfil -->
+    <img src="{% static 'imagen/foto_perfil.jpg' %}" alt="Foto de perfil" class="perfil-img">
+
+    <h1>Desarrollador Backend con Python</h1>
+    <p>Creando experiencias digitales innovadoras con código limpio y diseño moderno</p>
+
+    <div class="cta-buttons" style="margin-top: 20px;">
+        <a href="/proyectos/" class="btn btn-primary" style="margin-right: 10px;">
+            <span>Ver Proyectos</span>
+            <span>→</span>
+        </a>
+        <a href="/contacto/" class="btn btn-secondary">
+            <span>Contáctame</span>
+        </a>
+    </div>
+</section>
+
+<div class="card-grid" style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
+    <div class="card">
+        <h3 style="color: #667eea;">🚀 Desarrollo Web</h3>
+        <p>Creación de aplicaciones web modernas con Django, y tecnologías de vanguardia.</p>
+    </div>
+    <div class="card">
+        <h3 style="color: #764ba2;">💡 Soluciones Creativas</h3>
+        <p>Enfoque innovador para resolver problemas complejos con elegancia y eficiencia.</p>
+    </div>
+    <div class="card">
+        <h3 style="color: #667eea;">⚡ Performance</h3>
+        <p>Optimización y mejores prácticas para aplicaciones rápidas y escalables.</p>
+    </div>
+</div>
+
+<style>
+.perfil-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Imagen circular */
+    object-fit: cover;
+    border: 3px solid #667eea; /* Borde decorativo */
+    margin-bottom: 20px;
+}
+</style>
+{% endblock %}

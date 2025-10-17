@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+{% block title %}Proyectos - Juan M. Márquez{% endblock %}
+
+{% block content %}
+<style>
+    .projects-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .projects-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .projects-header h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+    }
+
+    .projects-header p {
+        font-size: 1.2rem;
+        color: #a1a1aa;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .projects-grid {
+        display: grid;
+        gap: 40px;
+    }
+
+    .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 40px;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .project-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        border-color: rgba(102, 126, 234, 0.5);
+    }
+
+    .project-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        display: inline-block;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .project-card h3 {
+        font-size: 1.8rem;
+        color: #e4e4e7;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .project-card p {
+        font-size: 1.05rem;
+        color: #a1a1aa;
+        line-height: 1.8;
+        margin-bottom: 25px;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .tag {
+        background: rgba(102, 126, 234, 0.2);
+        color: #a5b4fc;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .project-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+    }
+
+    .project-link-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+    }
+
+    .project-link-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .highlight-text {
+        color: #a5b4fc;
+        font-weight: 600;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .projects-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .project-card {
+            padding: 30px 25px;
+        }
+
+        .project-links {
+            flex-direction: column;
+        }
+
+        .project-link {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="projects-container">
+    <div class="projects-header">
+        <h1>Proyectos Destacados</h1>
+        <p>Una colección de proyectos que demuestran mis habilidades en desarrollo web, programación orientada a objetos y análisis de datos.</p>
+    </div>
+
+    <div class="projects-grid">
+        <!-- Proyecto 1: Simulador de Tarjetas -->
+        <div class="project-card">
+            <div class="project-icon">💳</div>
+            <h3>Simulador de Tarjetas</h3>
+            <p>
+                Aplicación de consola desarrollada en <span class="highlight-text">Python</span> con enfoque en 
+                <span class="highlight-text">Programación Orientada a Objetos</span>, que simula el funcionamiento 
+                completo de una tarjeta recargable. Implementa operaciones como recargas, pagos, activación y 
+                desactivación, además de mantener un historial completo de transacciones persistido en 
+                <span class="highlight-text">JSON</span>.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">POO</span>
+                <span class="tag">JSON</span>
+                <span class="tag">Persistencia</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/jmarquezdev20/Simulado-Tarjeta" target="_blank" class="project-link">
+                    <span>Ver en GitHub</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Proyecto 2: Sistema de Gestión Logística -->
+        <div class="project-card">
+            <div class="project-icon">🛍️</div>
+            <h3>Sistema de Gestión Logística</h3>
+            <p>
+                Aplicación web completa desarrollada con <span class="highlight-text">Django</span> y 
+                <span class="highlight-text">PostgreSQL</span> para la administración integral de productos, 
+                clientes y salidas. Sistema robusto que implementa buenas prácticas en desarrollo backend, 
+                optimización de consultas y arquitectura escalable.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">Django</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Backend</span>
+                <span class="tag">REST API</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/jmarquezdev20/sistema-logistico" target="_blank" class="project-link">
+                    <span>Ver Código</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Proyecto 3: Análisis de Población Mundial -->
+        <div class="project-card">
+            <div class="project-icon">📊</div>
+            <h3>Análisis de Población Mundial</h3>
+            <p>
+                Proyecto de <span class="highlight-text">Machine Learning</span> desarrollado en 
+                <span class="highlight-text">Python</span> que analiza datos demográficos históricos 
+                y predice tendencias poblacionales futuras. Implementa algoritmos de predicción y 
+                visualización de datos para análisis estadístico avanzado.
+            </p>
+            
+            <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Data Analysis</span>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/tuusuario/analisis-poblacion" target="_blank" class="project-link">
+                    <span>Ver Código</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

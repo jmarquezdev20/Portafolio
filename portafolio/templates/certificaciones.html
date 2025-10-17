@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Certificaciones - Juan M. Márquez{% endblock %}
+
+{% block content %}
+<style>
+/* Todo tu CSS actual, sin cambios */
+.certifications-container { max-width: 1000px; margin: 0 auto; animation: fadeInUp 0.8s ease; }
+.certifications-hero { text-align: center; margin-bottom: 60px; }
+.certifications-hero h1 { font-size: 3rem; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800; }
+.certifications-hero p { font-size: 1.2rem; color: #a1a1aa; max-width: 600px; margin: 0 auto; }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; }
+.cert-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden; transition: all 0.4s ease; cursor: pointer; }
+.cert-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); border-color: rgba(102, 126, 234, 0.5); }
+.cert-image { width: 100%; height: 200px; object-fit: cover; background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 4rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.cert-content { padding: 25px; }
+.cert-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+.cert-card h3 { color: #e4e4e7; font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; }
+.cert-issuer { color: #a5b4fc; font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.cert-date { color: #71717a; font-size: 0.9rem; margin-bottom: 15px; }
+.cert-card p { color: #a1a1aa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+.cert-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cert-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(102, 126, 234, 0.2); color: #a5b4fc; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(102, 126, 234, 0.3); transition: all 0.3s ease; }
+.cert-link:hover { background: rgba(102, 126, 234, 0.3); transform: translateX(3px); }
+.cert-link-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; }
+.cert-link-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4); }
+.achievements-section { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 50px; margin-top: 50px; }
+.achievements-title { font-size: 2rem; color: #667eea; margin-bottom: 30px; font-weight: 700; text-align: center; }
+.achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+.achievement-item { text-align: center; padding: 25px; background: rgba(255, 255, 255, 0.03); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
+.achievement-item:hover { background: rgba(255, 255, 255, 0.05); transform: scale(1.05); }
+.achievement-icon { font-size: 3rem; margin-bottom: 15px; }
+.achievement-number { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; }
+.achievement-label { color: #a1a1aa; font-size: 1rem; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 768px) {
+    .certifications-hero h1 { font-size: 2.5rem; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .achievements-section { padding: 30px 25px; }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+<div class="certifications-container">
+    <div class="certifications-hero">
+        <h1>Certificaciones y Logros</h1>
+        <p>Mi compromiso con el aprendizaje continuo y el desarrollo profesional</p>
+    </div>
+
+    <div class="cert-grid">
+        <!-- Certificado 1: MYSQL -->
+        <div class="cert-card">
+            <div class="cert-image">🗄️</div>
+            <div class="cert-content">
+                <h3>Bases de Datos MYSQL</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Creaciones completas de bases de datos, tablas, procedimientos lamacenados, vistas y normalización, desde lo básico hasta temas avanzados.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-db-sql.pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificado 1: Django -->
+        <div class="cert-card">
+            <div class="cert-image">🐍</div>
+            <div class="cert-content">
+                <h3>Django Framework</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Desarrollo completo de aplicaciones web con Django, desde lo básico hasta temas avanzados.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-django (2).pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificado 2: Python -->
+        <div class="cert-card">
+            <div class="cert-image">🎓</div>
+            <div class="cert-content">
+                <h3>Python Profesional</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Curso completo de Python para desarrollo profesional con enfoque en buenas prácticas.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-python (1).pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificado 3: Python Pip -->
+        <div class="cert-card">
+            <div class="cert-image">📦</div>
+            <div class="cert-content">
+                <h3>Python: Pip y Entornos Virtuales</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Gestión de paquetes y entornos virtuales en Python para proyectos profesionales.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-python-pip (1).pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificado 4: Python PI -->
+        <div class="cert-card">
+            <div class="cert-image">🔢</div>
+            <div class="cert-content">
+                <h3>Python: Fundamentos</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Fundamentos de programación en Python con enfoque práctico y ejercicios aplicados.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-python-funciones (1).pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificado 5: Unit Testing -->
+        <div class="cert-card">
+            <div class="cert-image">🧪</div>
+            <div class="cert-content">
+                <h3>Unit Testing y Pruebas</h3>
+                <div class="cert-issuer">🏢 Platzi</div>
+                <div class="cert-date">📅 2024</div>
+                <p>Testing automatizado y pruebas unitarias en Python para garantizar calidad del código.</p>
+                <div class="cert-actions">
+                    <a href="{% static 'certificados/diploma-unit-testing-python (1).pdf' %}" target="_blank" class="cert-link cert-link-primary">
+                        📄 Ver certificado
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="achievements-section">
+        <h2 class="achievements-title">🏆 Logros Destacados</h2>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="achievement-icon">💻</div>
+                <div class="achievement-number">10+</div>
+                <div class="achievement-label">Proyectos Completados</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">📚</div>
+                <div class="achievement-number">5</div>
+                <div class="achievement-label">Certificaciones</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">⭐</div>
+                <div class="achievement-number">500+</div>
+                <div class="achievement-label">Commits en GitHub</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon">🎯</div>
+                <div class="achievement-number">2+</div>
+                <div class="achievement-label">Años de Experiencia</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
